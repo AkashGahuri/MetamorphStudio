@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metamorph Design</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="nav-logo">Metamorph Studio</div>
+            <button class="hamburger" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="nav-dots">
+        <span class="dot active" data-page="1"></span>
+        <span class="dot" data-page="2"></span>
+        <span class="dot" data-page="3"></span>
+        <span class="dot" data-page="4"></span>
+        <span class="dot" data-page="5"></span>
+    </div>
+
+    <!-- Page 1: Hero -->
+    <section class="page active" id="page-1">
+        <div class="page-content">
+            <div class="hero-text">
+                <h1>We design and build ventures, empower founders, and support transformation to tackle Africa's and the world's most deep rooted challenges</h1>
+            </div>
+            <div class="scroll-indicator">
+                <div class="scroll-line"></div>
+                <span>Scroll</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 2: Ventures -->
+    <section class="page" id="page-2">
+        <div class="page-content">
+            <h2 class="page-title">Ventures</h2>
+        </div>
+    </section>
+
+    <!-- Page 3: Custom Green Screen -->
+    <section class="page" id="page-3">
+        <div class="page-content">
+            <h2 class="page-title">Founder's Program</h2>
+        </div>
+    </section>
+
+    <!-- Page 4: New Red Screen -->
+    <section class="page" id="page-4">
+        <div class="page-content">
+            
+        </div>
+    </section>
+
+    <!-- Page 5: Contact -->
+    <section class="page" id="page-5">
+        <div class="page-content">
+            <div class="contact-content">
+                <h2>Get in Touch</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="label">Phone</span>
+                        <span class="value">+254 786968778</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="label">Email</span>
+                        <span class="value">metamorph.myproject@gmail.com</span>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Name" required>
+                        <input type="email" placeholder="Email" required>
+                        <textarea placeholder="Message" rows="4" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html> 
