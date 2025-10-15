@@ -1,6 +1,6 @@
 # Metamorph Design - Minimal Website
 
-A delicate, minimal website for Metamorph Design Studio, inspired by Rick Rubin's "The Creative Act" and LoveFrom's design philosophy. Features page-by-page scrolling with only the essentials.
+A delicate, minimal website for Metamorph Design Studio, features page-by-page scrolling with only the essentials.
 
 ## 🎯 Design Philosophy
 
