@@ -31,6 +31,7 @@ document.addEventListener('mouseleave', () => {
 // Page navigation
 let currentPage = 1;
 const totalPages = 7;
+const visiblePages = [1, 7]; // Only pages 1 and 7 are visible
 let isScrolling = false;
 
 // Get all pages and dots
@@ -40,12 +41,16 @@ const nav = document.querySelector('.nav');
 
 // Function to go to specific page
 function goToPage(pageNumber) {
-    if (isScrolling || pageNumber < 1 || pageNumber > totalPages) return;
+    if (isScrolling || pageNumber < 1 || pageNumber > totalPages || !visiblePages.includes(pageNumber)) return;
     isScrolling = true;
 
     // Fade out current page
     pages[currentPage - 1].classList.remove('active');
-    dots[currentPage - 1].classList.remove('active');
+    // Find the dot index for current page
+    const currentDotIndex = visiblePages.indexOf(currentPage);
+    if (currentDotIndex !== -1) {
+        dots[currentDotIndex].classList.remove('active');
+    }
 
     // Wait for fade out to finish (match CSS transition duration)
     setTimeout(() => {
@@ -57,7 +62,11 @@ function goToPage(pageNumber) {
 
         // Fade in new page
         pages[pageNumber - 1].classList.add('active');
-        dots[pageNumber - 1].classList.add('active');
+        // Find the dot index for new page
+        const newDotIndex = visiblePages.indexOf(pageNumber);
+        if (newDotIndex !== -1) {
+            dots[newDotIndex].classList.add('active');
+        }
 
         // Allow input after fade in
         setTimeout(() => {
@@ -72,9 +81,10 @@ function updateNavBackground() {
 }
 
 // Dot navigation
-dots.forEach((dot, index) => {
+dots.forEach((dot) => {
     dot.addEventListener('click', () => {
-        goToPage(index + 1);
+        const pageNum = parseInt(dot.getAttribute('data-page'));
+        goToPage(pageNum);
     });
 });
 
@@ -85,22 +95,27 @@ document.addEventListener('wheel', (e) => {
     
     clearTimeout(wheelTimeout);
     wheelTimeout = setTimeout(() => {
-        if (e.deltaY > 0 && currentPage < totalPages) {
-            goToPage(currentPage + 1);
-        } else if (e.deltaY < 0 && currentPage > 1) {
-            goToPage(currentPage - 1);
+        const currentIndex = visiblePages.indexOf(currentPage);
+        if (e.deltaY > 0 && currentIndex < visiblePages.length - 1) {
+            goToPage(visiblePages[currentIndex + 1]);
+        } else if (e.deltaY < 0 && currentIndex > 0) {
+            goToPage(visiblePages[currentIndex - 1]);
         }
     }, 50);
 }, { passive: false });
 
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown' && currentPage < totalPages) {
-        goToPage(currentPage + 1);
-    } else if (e.key === 'ArrowUp' && currentPage > 1) {
-        goToPage(currentPage - 1);
+    const currentIndex = visiblePages.indexOf(currentPage);
+    if (e.key === 'ArrowDown' && currentIndex < visiblePages.length - 1) {
+        goToPage(visiblePages[currentIndex + 1]);
+    } else if (e.key === 'ArrowUp' && currentIndex > 0) {
+        goToPage(visiblePages[currentIndex - 1]);
     } else if (e.key >= '1' && e.key <= '7') {
-        goToPage(parseInt(e.key));
+        const pageNum = parseInt(e.key);
+        if (visiblePages.includes(pageNum)) {
+            goToPage(pageNum);
+        }
     }
 });
 
@@ -120,12 +135,13 @@ document.addEventListener('touchend', (e) => {
 function handleSwipe() {
     const swipeThreshold = 50;
     const diff = touchStartY - touchEndY;
+    const currentIndex = visiblePages.indexOf(currentPage);
     
     if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0 && currentPage < totalPages) {
-            goToPage(currentPage + 1);
-        } else if (diff < 0 && currentPage > 1) {
-            goToPage(currentPage - 1);
+        if (diff > 0 && currentIndex < visiblePages.length - 1) {
+            goToPage(visiblePages[currentIndex + 1]);
+        } else if (diff < 0 && currentIndex > 0) {
+            goToPage(visiblePages[currentIndex - 1]);
         }
     }
 }
