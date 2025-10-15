@@ -111,7 +111,7 @@ body {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.8s cubic-bezier(.4,0,.2,1), visibility 0.8s cubic-bezier(.4,0,.2,1);
+    transition: opacity 0.4s cubic-bezier(.4,0,.2,1), visibility 0.4s cubic-bezier(.4,0,.2,1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -451,6 +451,18 @@ body {
 /* Page 4: Contact */
 #page-4 {
     background: none;
+}
+
+#page-5 {
+    background: #5569A8;
+}
+
+#page-6 {
+    background: #71CA4F;
+}
+
+#page-7 {
+    background: #E983B0;
 }
 #page-4.active, #page-4.page.active {
     background: #C74646;

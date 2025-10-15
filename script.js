@@ -30,7 +30,7 @@ document.addEventListener('mouseleave', () => {
 
 // Page navigation
 let currentPage = 1;
-const totalPages = 5;
+const totalPages = 7;
 let isScrolling = false;
 
 // Get all pages and dots
@@ -62,8 +62,8 @@ function goToPage(pageNumber) {
         // Allow input after fade in
         setTimeout(() => {
             isScrolling = false;
-        }, 800);
-    }, 800); // match .page transition duration
+        }, 400);
+    }, 400); // match .page transition duration
 }
 
 // Update navigation background based on current page
@@ -99,7 +99,7 @@ document.addEventListener('keydown', (e) => {
         goToPage(currentPage + 1);
     } else if (e.key === 'ArrowUp' && currentPage > 1) {
         goToPage(currentPage - 1);
-    } else if (e.key >= '1' && e.key <= '5') {
+    } else if (e.key >= '1' && e.key <= '7') {
         goToPage(parseInt(e.key));
     }
 });
@@ -324,7 +324,9 @@ function updateBodyBackground() {
     if (currentPage === 2) color = "#760F9B";
     else if (currentPage === 3) color = "#369A8B";
     else if (currentPage === 4) color = "#C74646";
-    else if (currentPage === 5) color = "#E983B0";
+    else if (currentPage === 5) color = "#5569A8";
+    else if (currentPage === 6) color = "#71CA4F";
+    else if (currentPage === 7) color = "#E983B0";
     document.body.style.background = color;
 }
 
