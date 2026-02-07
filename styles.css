@@ -14,7 +14,7 @@ body {
     font-weight: 300;
     line-height: 1.6;
     color: #1a1a1a;
-    background: #fafafa;
+    background: #FB5605;
     overflow-x: hidden;
     cursor: none;
     transition: background 0.8s cubic-bezier(.4,0,.2,1);
@@ -71,59 +71,19 @@ body {
     color: white;
 }
 
-.nav-dots {
-    position: fixed;
-    left: 50%;
-    bottom: 2.5rem;
-    top: auto;
-    transform: translateX(-50%);
-    z-index: 1100;
-    display: flex;
-    gap: 1rem;
-    background: none;
-    box-shadow: none;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.dot.active {
-    background: white;
-}
-
-.dot:hover {
-    background: rgba(255, 255, 255, 0.8);
-}
-
 /* Pages */
 .page {
     width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.4s cubic-bezier(.4,0,.2,1), visibility 0.4s cubic-bezier(.4,0,.2,1);
+    min-height: 100vh;
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow-y: auto;
     z-index: 0;
-}
-
-.page.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    z-index: 1;
 }
 
 .page-content {
@@ -549,17 +509,6 @@ body {
     .nav {
         padding: 1.5rem;
     }
-    
-    .nav-dots {
-        bottom: 1.2rem;
-        gap: 0.5rem;
-    }
-    
-    .dot {
-        width: 6px;
-        height: 6px;
-    }
-    
     .hero-text h1 {
         font-size: 2rem;
         padding: 0 1rem;
@@ -669,11 +618,6 @@ body {
   .venture-description .tags {
     justify-content: center;
   }
-}
-
-/* Smooth transitions for page changes */
-.page {
-    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 /* Hide cursor on mobile */

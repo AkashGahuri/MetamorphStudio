@@ -28,124 +28,6 @@ document.addEventListener('mouseleave', () => {
     cursorFollower.style.opacity = '0';
 });
 
-// Page navigation
-let currentPage = 1;
-const totalPages = 7;
-const visiblePages = [1, 7]; // Only pages 1 and 7 are visible
-let isScrolling = false;
-
-// Get all pages and dots
-const pages = document.querySelectorAll('.page');
-const dots = document.querySelectorAll('.dot');
-const nav = document.querySelector('.nav');
-
-// Function to go to specific page
-function goToPage(pageNumber) {
-    if (isScrolling || pageNumber < 1 || pageNumber > totalPages || !visiblePages.includes(pageNumber)) return;
-    isScrolling = true;
-
-    // Fade out current page
-    pages[currentPage - 1].classList.remove('active');
-    // Find the dot index for current page
-    const currentDotIndex = visiblePages.indexOf(currentPage);
-    if (currentDotIndex !== -1) {
-        dots[currentDotIndex].classList.remove('active');
-    }
-
-    // Wait for fade out to finish (match CSS transition duration)
-    setTimeout(() => {
-        // Change background and nav
-        currentPage = pageNumber;
-        updateNavBackground();
-        updateBodyBackground();
-        updatePageIndicator();
-
-        // Fade in new page
-        pages[pageNumber - 1].classList.add('active');
-        // Find the dot index for new page
-        const newDotIndex = visiblePages.indexOf(pageNumber);
-        if (newDotIndex !== -1) {
-            dots[newDotIndex].classList.add('active');
-        }
-
-        // Allow input after fade in
-        setTimeout(() => {
-            isScrolling = false;
-        }, 400);
-    }, 400); // match .page transition duration
-}
-
-// Update navigation background based on current page
-function updateNavBackground() {
-    // No background color changes needed; nav is always transparent
-}
-
-// Dot navigation
-dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-        const pageNum = parseInt(dot.getAttribute('data-page'));
-        goToPage(pageNum);
-    });
-});
-
-// Wheel navigation
-let wheelTimeout;
-document.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    
-    clearTimeout(wheelTimeout);
-    wheelTimeout = setTimeout(() => {
-        const currentIndex = visiblePages.indexOf(currentPage);
-        if (e.deltaY > 0 && currentIndex < visiblePages.length - 1) {
-            goToPage(visiblePages[currentIndex + 1]);
-        } else if (e.deltaY < 0 && currentIndex > 0) {
-            goToPage(visiblePages[currentIndex - 1]);
-        }
-    }, 50);
-}, { passive: false });
-
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-    const currentIndex = visiblePages.indexOf(currentPage);
-    if (e.key === 'ArrowDown' && currentIndex < visiblePages.length - 1) {
-        goToPage(visiblePages[currentIndex + 1]);
-    } else if (e.key === 'ArrowUp' && currentIndex > 0) {
-        goToPage(visiblePages[currentIndex - 1]);
-    } else if (e.key >= '1' && e.key <= '7') {
-        const pageNum = parseInt(e.key);
-        if (visiblePages.includes(pageNum)) {
-            goToPage(pageNum);
-        }
-    }
-});
-
-// Touch navigation for mobile
-let touchStartY = 0;
-let touchEndY = 0;
-
-document.addEventListener('touchstart', (e) => {
-    touchStartY = e.changedTouches[0].screenY;
-});
-
-document.addEventListener('touchend', (e) => {
-    touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
-});
-
-function handleSwipe() {
-    const swipeThreshold = 50;
-    const diff = touchStartY - touchEndY;
-    const currentIndex = visiblePages.indexOf(currentPage);
-    
-    if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0 && currentIndex < visiblePages.length - 1) {
-            goToPage(visiblePages[currentIndex + 1]);
-        } else if (diff < 0 && currentIndex > 0) {
-            goToPage(visiblePages[currentIndex - 1]);
-        }
-    }
-}
-
 // Venture navigation
 let currentVenture = 1;
 const totalVentures = 4;
@@ -286,21 +168,9 @@ function showNotification(message, type = 'info') {
     }, 3000);
 }
 
-// Update page indicator
-function updatePageIndicator() {
-    const indicator = document.querySelector('.scroll-indicator');
-    if (indicator) {
-        if (currentPage === totalPages) {
-            indicator.style.opacity = '0';
-        } else {
-            indicator.style.opacity = '0.6';
-        }
-    }
-}
-
 // Add subtle hover effects to interactive elements
 function addHoverEffects() {
-    document.querySelectorAll('button, .dot, .service-item, .venture-nav, .venture-indicator').forEach(element => {
+    document.querySelectorAll('button, .service-item, .venture-nav, .venture-indicator').forEach(element => {
         element.addEventListener('mouseenter', () => {
             cursor.style.transform = 'scale(1.5)';
             cursorFollower.style.transform = 'scale(0.5)';
@@ -315,9 +185,6 @@ function addHoverEffects() {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    // Set initial page
-    goToPage(1);
-    
     // Add hover effects
     addHoverEffects();
     
@@ -329,22 +196,3 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.opacity = '1';
     }, 100);
 });
-
-// Prevent default scroll behavior
-document.addEventListener('scroll', (e) => {
-    e.preventDefault();
-}, { passive: false });
-
-function updateBodyBackground() {
-    let color = "#FB5605"; // default (page 1)
-    if (currentPage === 2) color = "#760F9B";
-    else if (currentPage === 3) color = "#369A8B";
-    else if (currentPage === 4) color = "#C74646";
-    else if (currentPage === 5) color = "#5569A8";
-    else if (currentPage === 6) color = "#71CA4F";
-    else if (currentPage === 7) color = "#FB5605";
-    document.body.style.background = color;
-}
-
-// Also call updateBodyBackground() on initial load
-updateBodyBackground(); 
