@@ -141,7 +141,7 @@ body {
 
 /* Page 2: Ventures */
 #page-2 {
-    background: none;
+    background: #760F9B;
     position: relative;
     overflow: visible;
 }
@@ -408,7 +408,7 @@ body {
 
 /* Page 3: Services */
 #page-3 {
-    background: none;
+    background: #369A8B;
 }
 
 .services-content h2 {
