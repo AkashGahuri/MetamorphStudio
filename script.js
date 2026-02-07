@@ -342,7 +342,7 @@ function updateBodyBackground() {
     else if (currentPage === 4) color = "#C74646";
     else if (currentPage === 5) color = "#5569A8";
     else if (currentPage === 6) color = "#71CA4F";
-    else if (currentPage === 7) color = "#E983B0";
+    else if (currentPage === 7) color = "#FB5605";
     document.body.style.background = color;
 }
 
