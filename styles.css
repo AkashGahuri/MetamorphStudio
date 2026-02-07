@@ -161,6 +161,49 @@ body {
     padding: 0;
 }
 
+.logos-scroll {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 0.5rem 0 1rem;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 900px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.logos-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.logos-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+}
+
+.logos-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+}
+
+.logo-item {
+    flex: 0 0 auto;
+    min-width: 160px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    letter-spacing: 0.04em;
+    font-size: 0.95rem;
+    scroll-snap-align: center;
+    padding: 0 1.5rem;
+}
+
 .ventures-title {
     text-align: center;
     margin-bottom: 2.5rem;
@@ -512,6 +555,16 @@ body {
     .hero-text h1 {
         font-size: 2rem;
         padding: 0 1rem;
+    }
+    
+    .logos-scroll {
+        gap: 1rem;
+    }
+    
+    .logo-item {
+        min-width: 130px;
+        height: 64px;
+        font-size: 0.85rem;
     }
     
     .ventures-title h2 {
