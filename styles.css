@@ -76,9 +76,6 @@ body {
     width: 100%;
     min-height: 100vh;
     position: relative;
-    --prev-color: transparent;
-    --current-color: transparent;
-    background: var(--current-color);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -89,30 +86,15 @@ body {
     z-index: 0;
 }
 
-.page::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 140px;
-    background: linear-gradient(to bottom, var(--prev-color), var(--current-color));
-    pointer-events: none;
-    z-index: 0;
-}
-
 .page-content {
     max-width: 800px;
     padding: 0 2rem;
     text-align: center;
-    position: relative;
-    z-index: 1;
 }
 
 /* Page 1: Hero */
 #page-1 {
-    --prev-color: #FB5605;
-    --current-color: #FB5605;
+    background: none;
 }
 
 .hero-text h1 {
@@ -159,8 +141,7 @@ body {
 
 /* Page 2: Ventures */
 #page-2 {
-    --prev-color: #FB5605;
-    --current-color: #760F9B;
+    background: #760F9B;
     position: relative;
     overflow: visible;
 }
@@ -427,8 +408,7 @@ body {
 
 /* Page 3: Services */
 #page-3 {
-    --prev-color: #760F9B;
-    --current-color: #369A8B;
+    background: #369A8B;
 }
 
 .services-content h2 {
@@ -473,23 +453,19 @@ body {
 
 /* Page 4: Contact */
 #page-4 {
-    --prev-color: #369A8B;
-    --current-color: #C74646;
+    background: none;
 }
 
 #page-5 {
-    --prev-color: #C74646;
-    --current-color: #5569A8;
+    background: #5569A8;
 }
 
 #page-6 {
-    --prev-color: #5569A8;
-    --current-color: #71CA4F;
+    background: #71CA4F;
 }
 
 #page-7 {
-    --prev-color: #71CA4F;
-    --current-color: #E983B0;
+    background: #E983B0;
 }
 #page-4.active, #page-4.page.active {
     background: #C74646;
